@@ -137,4 +137,59 @@ class Arrays
 
         return call_user_func_array($callable, [$array[$key]]);
     }
+
+    /**
+     * Traverses the given $array using the key path specified by $delimitedKey and returns the final value.
+     *
+     * Example:
+     * <br />
+     * <code>
+     * use Chadicus\Primaids\Arrays;
+     * $array = [
+     *     'db' => [
+     *         'host' => 'localhost',
+     *         'login' => [
+     *             'username' => 'scott', 
+     *             'password' => 'tiger', 
+     *         ],
+     *     ],
+     * ];
+     * echo Arrays::getNested($array, 'db.login.username');
+     * </code>
+     * <br />
+     * Output:
+     * <pre>
+     * scott
+     * </pre>
+     *
+     * @param array  $array        The array to traverse.
+     * @param string $delimitedKey A string of keys to traverse into the array.
+     * @param string $delimiter    A string specifiying how the keys are delimited. The default is '.'.
+     *
+     * @return mixed The value a the inner most key or null if a key does not exist.
+     *
+     * @throws \InvalidArgumentException Thrown if $delimitedKey is not a non-empty string.
+     * @throws \InvalidArgumentException Thrown if $delimiter is not a non-empty string.
+     */
+    final public static function getNested(array $array, $delimitedKey, $delimiter = '.')
+    {
+        if (!is_string($delimitedKey) || trim($delimitedKey) == '') {
+            throw new \InvalidArgumentException('$delimitedKey must be a non-empty string');
+        }
+
+        if (!is_string($delimiter) || trim($delimiter) == '') {
+            throw new \InvalidArgumentException('$delimiter must be a non-empty string');
+        }
+
+        $pointer = $array;
+        foreach (explode($delimiter, $delimitedKey) as $key) {
+            if (!is_array($pointer) || !array_key_exists($key, $pointer)) {
+                return null;
+            }
+
+            $pointer = $pointer[$key];
+        }
+
+        return $pointer;
+    }
 }

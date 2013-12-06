@@ -201,4 +201,96 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
             'nonString' => [1],
         ];
     }
+
+    /**
+     * Verify basic functionality of getNested.
+     *
+     * @test
+     * @covers \Chadicus\Primaids\Arrays::getNested
+     * 
+     * @return void
+     */
+    public function getNested()
+    {
+        $array = ['db' => ['host' => 'localhost', 'login' => [ 'username' => 'scott', 'password' => 'tiger']]];
+        $this->assertSame('scott', Arrays::getNested($array, 'db.login.username'));
+    }
+
+    /**
+     * Verify behavior when invalid $delimitedKey values are given to getNested.
+     *
+     * @param mixed $delimitedKey The invalid delimitedKey.
+     *
+     * @test
+     * @covers \Chadicus\Primaids\Arrays::getNested
+     * @dataProvider badDelimitedKeys
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage $delimitedKey must be a non-empty string
+     * 
+     * @return void
+     */
+    public function getNestedWithInvalidDelimitedKey($delimitedKey)
+    {
+        Arrays::getNested([], $delimitedKey);
+    }
+
+    /**
+     * Data provider method for getNestedWithInvalidDelimitedKey.
+     *
+     * @return array
+     */
+    public function badDelimitedKeys()
+    {
+        return [
+            'emptyString' => [''],
+            'null' => [null],
+            'nonString' => [1],
+        ];
+    }
+
+    /**
+     * Verify behavior when invalid $delimiter values are given to getNested.
+     *
+     * @param mixed $delimiter The invalid delimiter.
+     *
+     * @test
+     * @covers \Chadicus\Primaids\Arrays::getNested
+     * @dataProvider badDelimiters
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage $delimiter must be a non-empty string
+     * 
+     * @return void
+     */
+    public function getNestedWithInvalidDelimiter($delimiter)
+    {
+        Arrays::getNested([], 'not.under.test', $delimiter);
+    }
+
+    /**
+     * Data provider method for getNestedWithInvalidDelimiter.
+     *
+     * @return array
+     */
+    public function badDelimiters()
+    {
+        return [
+            'emptyString' => [''],
+            'null' => [null],
+            'nonString' => [1],
+        ];
+    }
+
+    /**
+     * Verify behavior when the given delimitedKey does not exist in the given array.
+     *
+     * @test
+     * @covers \Chadicus\Primaids\Arrays::getNested
+     * 
+     * @return void
+     */
+    public function getNestedPathNotFound()
+    {
+        $array = ['db' => ['host' => 'localhost', 'login' => [ 'username' => 'scott', 'password' => 'tiger']]];
+        $this->assertNull(Arrays::getNested($array, 'db.notfound.username'));
+    }
 }
