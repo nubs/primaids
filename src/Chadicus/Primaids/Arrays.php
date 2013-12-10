@@ -149,8 +149,8 @@ class Arrays
      *     'db' => [
      *         'host' => 'localhost',
      *         'login' => [
-     *             'username' => 'scott', 
-     *             'password' => 'tiger', 
+     *             'username' => 'scott',
+     *             'password' => 'tiger',
      *         ],
      *     ],
      * ];
@@ -191,5 +191,36 @@ class Arrays
         }
 
         return $pointer;
+    }
+
+    /**
+     * Move the element at index $sourceKey to index $destinationKey.
+     *
+     * @param array  &$array         The array that contains a value at index $sourceKey.
+     * @param string $sourceKey      The index of the source value.
+     * @param string $destinationKey The new index name.
+     *
+     * @return void
+     *
+     * @throws \InvalidArgumentException Thrown if $sourceKey is not a string or integer.
+     * @throws \InvalidArgumentException Thrown if $destinationKey is not a string or integer.
+     * @throws \OutOfBoundsException Thrown if $sourceKey is not an index of $array.
+     */
+    final public static function rename(array &$array, $sourceKey, $destinationKey)
+    {
+        if (!is_string($sourceKey) && !is_int($sourceKey)) {
+            throw new \InvalidArgumentException('$sourceKey must be a string or integer');
+        }
+
+        if (!is_string($destinationKey) && !is_int($destinationKey)) {
+            throw new \InvalidArgumentException('$destinationKey must be a string or integer');
+        }
+
+        if (!array_key_exists($sourceKey, $array)) {
+            throw new \OutOfBoundsException("'{$sourceKey}' was not a valid key");
+        }
+
+        $array[$destinationKey] = $array[$sourceKey];
+        unset($array[$sourceKey]);
     }
 }

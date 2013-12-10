@@ -207,7 +207,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers \Chadicus\Primaids\Arrays::getNested
-     * 
+     *
      * @return void
      */
     public function getNested()
@@ -226,7 +226,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * @dataProvider badDelimitedKeys
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $delimitedKey must be a non-empty string
-     * 
+     *
      * @return void
      */
     public function getNestedWithInvalidDelimitedKey($delimitedKey)
@@ -258,7 +258,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * @dataProvider badDelimiters
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $delimiter must be a non-empty string
-     * 
+     *
      * @return void
      */
     public function getNestedWithInvalidDelimiter($delimiter)
@@ -285,12 +285,75 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers \Chadicus\Primaids\Arrays::getNested
-     * 
+     *
      * @return void
      */
     public function getNestedPathNotFound()
     {
         $array = ['db' => ['host' => 'localhost', 'login' => [ 'username' => 'scott', 'password' => 'tiger']]];
         $this->assertNull(Arrays::getNested($array, 'db.notfound.username'));
+    }
+
+    /**
+     * Verify basic behavior of rename().
+     *
+     * @test
+     * @covers \Chadicus\Primaids\Arrays::rename
+     *
+     * @return void
+     */
+    public function rename()
+    {
+        $array = ['a', 'b'];
+        Arrays::rename($array, 0, 2);
+        $this->assertSame([1 => 'b', 2 => 'a'], $array);
+    }
+
+    /**
+     * Verify behavior when an invalid $sourceKey is given to rename().
+     *
+     * @test
+     * @covers \Chadicus\Primaids\Arrays::rename
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage $sourceKey must be a string or integer
+     *
+     * @return void
+     */
+    public function renameWithInvalidSourceKey()
+    {
+        $array = ['a', 'b'];
+        Arrays::rename($array, false, 2);
+    }
+
+    /**
+     * Verify behavior when an invalid $destinationKey is given to rename().
+     *
+     * @test
+     * @covers \Chadicus\Primaids\Arrays::rename
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage $destinationKey must be a string or integer
+     *
+     * @return void
+     */
+    public function renameWithInvalidDestinationKey()
+    {
+        $array = ['a', 'b'];
+        Arrays::rename($array, 0, false);
+    }
+
+    /**
+     * Verify behaviour of rename with $sourceKey parameter that does not exist in the array.
+     *
+     * @test
+     * @covers \Chadicus\Primaids\Arrays::rename
+     * @expectedException \OutOfBoundsException
+     * @expectedExceptionMessage 'foo' was not a valid key
+     *
+     * @return void
+     */
+    public function renameWithMissingSourceKey()
+    {
+        $array = ['a', 'b'];
+        Arrays::rename($array, 'foo', 2);
     }
 }
