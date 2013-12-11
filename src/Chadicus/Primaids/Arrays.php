@@ -10,12 +10,11 @@ class Arrays
      * Converts the given array into a string using the provided format.
      *
      * Example:
-     * <br />
-     * <code>
+     * <pre>
      * use Chadicus\Primaids\Arrays;
      * $array = ['oranges' => .69, 'bananas' => .79, 'apples' => .89];
      * echo Util::format($array, "Fruit: {key} only {value} per pound\n");
-     * </code>
+     * </pre>
      * <br />
      * Output:
      * <pre>
@@ -64,13 +63,13 @@ class Arrays
      *
      * Example:
      * <br />
-     * <code>
+     * <pre>
      * use Chadicus\Primaids\Arrays;
      * $array = ['a', 'b', 'c'];
      * $result = Arrays::getAndUnset($array, 1);
      * var_dump($result);
      * var_dump($array);
-     * </code>
+     * </pre>
      * <br />
      * Output:
      * <pre>
@@ -104,12 +103,12 @@ class Arrays
      *
      * Example:
      * <br />
-     * <code>
+     * <pre>
      * use Chadicus\Primaids\Arrays;
      * $array = ['a', 'b', 'c'];
      * $result = Arrays::getAndCall($array, 1, 'strtoupper');
      * var_dump($result);
-     * </code>
+     * </pre>
      * <br />
      * Output:
      * <pre>
@@ -143,7 +142,7 @@ class Arrays
      *
      * Example:
      * <br />
-     * <code>
+     * <pre>
      * use Chadicus\Primaids\Arrays;
      * $array = [
      *     'db' => [
@@ -155,7 +154,7 @@ class Arrays
      *     ],
      * ];
      * echo Arrays::getNested($array, 'db.login.username');
-     * </code>
+     * </pre>
      * <br />
      * Output:
      * <pre>
@@ -196,6 +195,21 @@ class Arrays
     /**
      * Move the element at index $sourceKey to index $destinationKey.
      *
+     * Example:
+     * <pre>
+     * use Chadicus\Primaids\Arrays;
+     * $array = ['foo' => 'bar'];
+     * Arrays::rename($array, 'foo', 'goo');
+     * var_dump($array);
+     * </pre>
+     * Output:
+     * <pre>
+     * array(1) {
+     *   'goo' =>
+     *   string(3) "bar"
+     * }
+     * </pre>
+     *
      * @param array  &$array         The array that contains a value at index $sourceKey.
      * @param string $sourceKey      The index of the source value.
      * @param string $destinationKey The new index name.
@@ -226,6 +240,23 @@ class Arrays
 
     /**
      * Adds $value to $array at index $key if the given $expression is equivalent to false.
+     *
+     * Example:
+     * <pre>
+     * use Chadicus\Primaids\Arrays;
+     * $array = [];
+     * $value = 'a value';
+     * Arrays::setIfTrue($array, 0, $value, $value !== null);
+     * var_dump($array);
+     * </pre>
+     * <br />
+     * Output:
+     * <pre>
+     * array(1) {
+     *   [0] =>
+     *   string(7) "a value"
+     * }
+     * </pre>
      *
      * @param array          &$array     The array to add the value.
      * @param string|integer $key        The index at which the value will be set.
