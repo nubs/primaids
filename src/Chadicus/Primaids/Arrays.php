@@ -223,4 +223,27 @@ class Arrays
         $array[$destinationKey] = $array[$sourceKey];
         unset($array[$sourceKey]);
     }
+
+    /**
+     * Adds $value to $array at index $key if the given $expression is equivalent to false.
+     *
+     * @param array          &$array     The array to add the value.
+     * @param string|integer $key        The index at which the value will be set.
+     * @param mixed          $value      The value to be added.
+     * @param mixed          $expression The expression to evaluate.
+     *
+     * @return void
+     *
+     * @throws \InvalidArgumentException Thrown if $key is not a string or integer.
+     */
+    final public static function setIfTrue(array &$array, $key, $value, $expression)
+    {
+        if (!is_string($key) && !is_int($key)) {
+            throw new \InvalidArgumentException('$key must be a string or integer');
+        }
+
+        if ($expression) {
+            $array[$key] = $value;
+        }
+    }
 }

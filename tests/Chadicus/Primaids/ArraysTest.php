@@ -356,4 +356,37 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
         $array = ['a', 'b'];
         Arrays::rename($array, 'foo', 2);
     }
+
+    /**
+     * Verify basic behavior of setIfTrue.
+     *
+     * @test
+     * @covers \Chadicus\Primaids\Arrays::setIfTrue
+     *
+     * @return void
+     */
+    public function setIfTrue()
+    {
+        $a = ['a'];
+        Arrays::setIfTrue($a, 1, 'b', true);
+        $this->assertSame(['a', 'b'], $a);
+        Arrays::setIfTrue($a, 2, 'c', false);
+        $this->assertSame(['a', 'b'], $a);
+    }
+
+    /**
+     * Verify behavior of setIfTrue if $key is not a string or integer.
+     *
+     * @test
+     * @covers \Chadicus\Primaids\Arrays::setIfTrue
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage $key must be a string or integer
+     *
+     * @return void
+     */
+    public function setIfTrueWithInvalidKey()
+    {
+        $a = ['a'];
+        Arrays::setIfTrue($a, new \StdClass(), 'b', true);
+    }
 }
