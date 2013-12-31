@@ -15,7 +15,7 @@ To add the library as a local, per-project dependency use [Composer](http://getc
 ```json
 {
     "require": {
-        "chadicus/primaids": "dev-master"
+        "chadicus/primaids": "~1.0"
     }
 }
 ```
