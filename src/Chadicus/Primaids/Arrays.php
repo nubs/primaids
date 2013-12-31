@@ -239,7 +239,7 @@ class Arrays
     }
 
     /**
-     * Adds $value to $array at index $key if the given $expression is equivalent to false.
+     * Adds $value to $array at index $key if the given $expression is equivalent to true.
      *
      * Example:
      * <pre>
