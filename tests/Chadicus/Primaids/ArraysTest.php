@@ -389,4 +389,65 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
         $a = ['a'];
         Arrays::setIfTrue($a, new \StdClass(), 'b', true);
     }
+
+    /**
+     * Verify basic functionality of groupBy().
+     *
+     * @test
+     * @covers \Chadicus\Primaids\Arrays::groupBy
+     *
+     * @return void
+     */
+    public function groupBy()
+    {
+        $input = [
+            [
+                'foo' => 'a',
+                'bar' => 'b',
+                'target' => 'x',
+            ],
+            [
+                'foo' => 'c',
+                'bar' => 'd',
+                'target' => 'y',
+            ],
+            [
+                'foo' => 'e',
+                'bar' => 'f',
+                'target' => 'z',
+            ],
+            [
+                'foo' => 'g',
+                'bar' => 'h',
+                'target' => 'y',
+            ],
+        ];
+
+        $expected = [
+            'x' => [
+                [
+                    'foo' => 'a',
+                    'bar' => 'b',
+                ],
+            ],
+            'y' => [
+                [
+                    'foo' => 'c',
+                    'bar' => 'd',
+                ],
+                [
+                    'foo' => 'g',
+                    'bar' => 'h',
+                ],
+            ],
+            'z' => [
+                [
+                    'foo' => 'e',
+                    'bar' => 'f',
+                ],
+            ],
+        ];
+
+        $this->assertSame($expected, Arrays::groupBy($input, 'target'));
+    }
 }

@@ -277,4 +277,100 @@ class Arrays
             $array[$key] = $value;
         }
     }
+
+    /**
+     * Groups the values within the $input array by the value within $key.
+     *
+     * Example:
+     * <pre>
+     * use Chadicus\Primaids\Arrays;
+     *
+     * $input = [
+     *   [
+     *     'name' => 'Sam',
+     *     'gender' => 'M',
+     *     'age' => 'Over 35',
+     *   ],
+     *   [
+     *     'name' => 'Linda',
+     *     'gender' => 'F',
+     *     'age' => '25 - 35',
+     *   ],
+     *   [
+     *     'name' => 'Max',
+     *     'gender' => 'M',
+     *     'age' => 'Under 25',
+     *   ],
+     *   [
+     *     'name' => 'Phillip',
+     *     'gender' => 'M',
+     *     'age' => '25 - 35',
+     *   ],
+     * ];
+     * $grouped = Arrays::groupBy($input, 'age');
+     * var_dump($grouped);
+     * </pre>
+     * <br />
+     * Output:
+     * <pre>
+     * array(3) {
+     *   'Over 35' =>
+     *    array(1) {
+     *      [0] =>
+     *      array(2) {
+     *        'name' =>
+     *        string(3) "Sam"
+     *        'gender' =>
+     *        string(1) "M"
+     *      }
+     *    }
+     *    '25 - 35' =>
+     *    array(2) {
+     *      [0] =>
+     *      array(2) {
+     *        'name' =>
+     *        string(1) "Linda"
+     *        'gender' =>
+     *        string(1) "F"
+     *      }
+     *      [1] =>
+     *      array(2) {
+     *        'name' =>
+     *        string(1) "Phillip"
+     *        'gender' =>
+     *        string(1) "M"
+     *      }
+     *    }
+     *    'Under 25' =>
+     *    array(1) {
+     *      [0] =>
+     *      array(2) {
+     *        'name' =>
+     *        string(1) "Max"
+     *        'gender' =>
+     *        string(1) "M"
+     *      }
+     *    }
+     *  }
+     * </pre>
+     *
+     * @param array          $input The array to be grouped.
+     * @param string|integer $key   The key by which the sub arrays will be grouped.
+     *
+     * @return array
+     */
+    final public static function groupBy(array $input, $key)
+    {
+        $result = [];
+        foreach ($input as $array) {
+            $keyValue = self::getAndUnset($array, $key);
+            if (!array_key_exists($keyValue, $result)) {
+                $result[$keyValue] = [];
+            }
+
+            $result[$keyValue][] = $array;
+        }
+
+        return $result;
+    }
 }
