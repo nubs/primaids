@@ -155,15 +155,21 @@
         </a>
     </li>
 
+                                                                                                        <li class="method public">
+        <a href="#method_groupBy" title="groupBy :: Groups the values within the $input array by the value within $key.">
+            <span class="description">Groups the values within the $input array by the value within $key.</span><pre>groupBy</pre>
+        </a>
+    </li>
+
                                                 </ul>
         </li>
         <li class="nav-header protected">» Protected
             <ul>
-                                                                                                                                                                                                                                                                    </ul>
+                                                                                                                                                                                                                                                                                                        </ul>
         </li>
         <li class="nav-header private">» Private
             <ul>
-                                                                                                                                                                                                                                                                    </ul>
+                                                                                                                                                                                                                                                                                                        </ul>
         </li>
         <li class="nav-header">
             <i class="icon-custom icon-constant"></i> Constants
@@ -572,6 +578,112 @@ Output:</p>
                                                                     </div>
                             </div>
                         </div>
+                                            <a id="method_groupBy"></a>
+                        <div class="element clickable method public  method_groupBy" data-toggle="collapse" data-target=".method_groupBy .collapse">
+                            <h2>Groups the values within the $input array by the value within $key.</h2>
+                            <pre>groupBy(array $input, string|integer $key) : array</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                <span class="label">final</span>                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Example:</p>
+<pre>
+use Chadicus\Primaids\Arrays;
+
+$input = [
+  [
+    'name' => 'Sam',
+    'gender' => 'M',
+    'age' => 'Over 35',
+  ],
+  [
+    'name' => 'Linda',
+    'gender' => 'F',
+    'age' => '25 - 35',
+  ],
+  [
+    'name' => 'Max',
+    'gender' => 'M',
+    'age' => 'Under 25',
+  ],
+  [
+    'name' => 'Phillip',
+    'gender' => 'M',
+    'age' => '25 - 35',
+  ],
+];
+$grouped = Arrays::groupBy($input, 'age');
+var_dump($grouped);
+</pre>
+<p><br />
+Output:</p>
+<pre>
+<p>array(3) {
+  'Over 35' =>
+   array(1) {</p>
+<pre><code> [0] =&gt;
+ array(2) {
+   'name' =&gt;
+   string(3) "Sam"
+   'gender' =&gt;
+   string(1) "M"
+ }</code></pre>
+<p>   }
+   '25 - 35' =>
+   array(2) {</p>
+<pre><code> [0] =&gt;
+ array(2) {
+   'name' =&gt;
+   string(1) "Linda"
+   'gender' =&gt;
+   string(1) "F"
+ }
+ [1] =&gt;
+ array(2) {
+   'name' =&gt;
+   string(1) "Phillip"
+   'gender' =&gt;
+   string(1) "M"
+ }</code></pre>
+<p>   }
+   'Under 25' =>
+   array(1) {</p>
+<pre><code> [0] =&gt;
+ array(2) {
+   'name' =&gt;
+   string(1) "Max"
+   'gender' =&gt;
+   string(1) "M"
+ }</code></pre>
+<p>   }
+ }
+</pre></p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$input</h4>
+                                                <code>array</code><p><p>The array to be grouped.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$key</h4>
+                                                <code>string|integer</code><p><p>The key by which the sub arrays will be grouped.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
                     
                     
                                                         </div>
@@ -594,7 +706,7 @@ Output:</p>
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Mon, 10 Feb 2014 16:53:07 -0500.<br/>
+            generated on Mon, 10 Feb 2014 16:59:09 -0500.<br/>
     </footer>
     </body>
 </html>
