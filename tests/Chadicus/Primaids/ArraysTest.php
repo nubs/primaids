@@ -395,6 +395,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers \Chadicus\Primaids\Arrays::groupBy
+     * @uses \Chadicus\Primaids\Arrays::getAndUnset
      *
      * @return void
      */
