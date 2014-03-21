@@ -4,7 +4,9 @@ namespace Chadicus\Primaids;
 use Chadicus\Primaids\String;
 
 /**
- * Unit tests for \Chadicus\Array\String class.
+ * Unit tests for \Chadicus\Primaids\String class.
+ *
+ * @coversDefaultClass \Chadicus\Primaids\String
  */
 final class StringTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,7 +14,7 @@ final class StringTest extends \PHPUnit_Framework_TestCase
      * Verify basic behavior of isEmpty.
      *
      * @test
-     * @covers \Chadicus\Primaids\String::isEmpty
+     * @covers ::isEmpty
      *
      * @return void
      */
@@ -28,7 +30,7 @@ final class StringTest extends \PHPUnit_Framework_TestCase
      * Verify behavior when an invalid $string is given to isEmpty().
      *
      * @test
-     * @covers \Chadicus\Primaids\String::isEmpty
+     * @covers ::isEmpty
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $string was not null or a string
      *

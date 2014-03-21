@@ -4,7 +4,9 @@ namespace Chadicus\Primaids;
 use Chadicus\Primaids\Arrays;
 
 /**
- * Unit tests for \Chadicus\Array\Arrays class.
+ * Unit tests for \Chadicus\Primaids\Arrays class.
+ *
+ * @coversDefaultClass \Chadicus\Primaids\Arrays
  */
 final class ArraysTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,7 +14,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * Verify basic behavior of the format method.
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::format
+     * @covers ::format
      *
      * @return void
      */
@@ -30,7 +32,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * @param mixed $format The invalid format.
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::format
+     * @covers ::format
      * @dataProvider badFormats
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $format must be a non-empty string
@@ -48,7 +50,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * @param mixed $keyPlaceHolder The invalid key place-holder.
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::format
+     * @covers ::format
      * @dataProvider badKeyPlaceHolders
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $keyPlaceHolder must be a non-empty string
@@ -66,7 +68,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * @param mixed $valuePlaceHolder The invalid value place-holder.
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::format
+     * @covers ::format
      * @dataProvider badValuePlaceHolders
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $valuePlaceHolder must be a non-empty string
@@ -82,7 +84,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * Verifies basic behavior of the getAndUnset method.
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::getAndUnset
+     * @covers ::getAndUnset
      *
      * @return void
      */
@@ -97,7 +99,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * Verifies behavior of getAndUnset when the given key does not exist in the given array.
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::getAndUnset
+     * @covers ::getAndUnset
      *
      * @return void
      */
@@ -112,7 +114,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * Verify basic behavior of getAndCall.
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::getAndCall
+     * @covers ::getAndCall
      *
      * @return void
      */
@@ -134,7 +136,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * Verify behaviour of getAndCall with invalid key parameter.
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::getAndCall
+     * @covers ::getAndCall
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $key must be a string or integer
      *
@@ -149,7 +151,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * Verify behaviour of getAndCall with key parameter that does not exist in the array.
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::getAndCall
+     * @covers ::getAndCall
      * @expectedException \OutOfBoundsException
      * @expectedExceptionMessage 'foo' was not a valid key
      *
@@ -206,7 +208,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * Verify basic functionality of getNested.
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::getNested
+     * @covers ::getNested
      *
      * @return void
      */
@@ -222,7 +224,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * @param mixed $delimitedKey The invalid delimitedKey.
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::getNested
+     * @covers ::getNested
      * @dataProvider badDelimitedKeys
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $delimitedKey must be a non-empty string
@@ -254,7 +256,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * @param mixed $delimiter The invalid delimiter.
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::getNested
+     * @covers ::getNested
      * @dataProvider badDelimiters
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $delimiter must be a non-empty string
@@ -284,7 +286,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * Verify behavior when the given delimitedKey does not exist in the given array.
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::getNested
+     * @covers ::getNested
      *
      * @return void
      */
@@ -298,7 +300,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * Verify basic behavior of rename().
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::rename
+     * @covers ::rename
      *
      * @return void
      */
@@ -313,7 +315,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * Verify behavior when an invalid $sourceKey is given to rename().
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::rename
+     * @covers ::rename
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $sourceKey must be a string or integer
      *
@@ -329,7 +331,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * Verify behavior when an invalid $destinationKey is given to rename().
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::rename
+     * @covers ::rename
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $destinationKey must be a string or integer
      *
@@ -345,7 +347,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * Verify behaviour of rename with $sourceKey parameter that does not exist in the array.
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::rename
+     * @covers ::rename
      * @expectedException \OutOfBoundsException
      * @expectedExceptionMessage 'foo' was not a valid key
      *
@@ -361,7 +363,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * Verify basic behavior of setIfTrue.
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::setIfTrue
+     * @covers ::setIfTrue
      *
      * @return void
      */
@@ -378,7 +380,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * Verify behavior of setIfTrue if $key is not a string or integer.
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::setIfTrue
+     * @covers ::setIfTrue
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage $key must be a string or integer
      *
@@ -394,7 +396,7 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * Verify basic functionality of groupBy().
      *
      * @test
-     * @covers \Chadicus\Primaids\Arrays::groupBy
+     * @covers ::groupBy
      * @uses \Chadicus\Primaids\Arrays::getAndUnset
      *
      * @return void
