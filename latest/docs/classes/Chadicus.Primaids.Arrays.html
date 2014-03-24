@@ -161,15 +161,21 @@
         </a>
     </li>
 
+                                                                                                        <li class="method public">
+        <a href="#method_subSet" title="subSet :: Return an array containing a subset of the given $input array.">
+            <span class="description">Return an array containing a subset of the given $input array.</span><pre>subSet</pre>
+        </a>
+    </li>
+
                                                 </ul>
         </li>
         <li class="nav-header protected">» Protected
             <ul>
-                                                                                                                                                                                                                                                                                                        </ul>
+                                                                                                                                                                                                                                                                                                                                            </ul>
         </li>
         <li class="nav-header private">» Private
             <ul>
-                                                                                                                                                                                                                                                                                                        </ul>
+                                                                                                                                                                                                                                                                                                                                            </ul>
         </li>
         <li class="nav-header">
             <i class="icon-custom icon-constant"></i> Constants
@@ -684,6 +690,83 @@ Output:</p>
                                                                     </div>
                             </div>
                         </div>
+                                            <a id="method_subSet"></a>
+                        <div class="element clickable method public  method_subSet" data-toggle="collapse" data-target=".method_subSet .collapse">
+                            <h2>Return an array containing a subset of the given $input array.</h2>
+                            <pre>subSet(array $input, array $keys, boolean $strict = false) : array</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                <span class="label">final</span>                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Example:</p>
+<pre>
+use Chadicus\Primaids\Arrays;
+$full = [
+    'author' => 'Gambardella, Matthew',
+    'title' => 'XML Developer\'s Guide',
+    'genre' => 'Computer',
+    'price' => 44.95,
+    'publishDate' => 970372800,
+    'description' => 'An in-depth look at creating applications with XML.',
+    'id' => 'bk101',
+    'url' => '/books/bk101',
+];
+$minimal = Arrays::subSet($full, ['url', 'title', 'price']);
+var_dump($minimal);
+</pre>
+<p><br />
+Output:</p>
+<pre>
+<p>array(3) {
+  'url' =>
+  string(12) "/books/bk101"
+  'title' =>
+  string(21) "XML Developer's Guide"
+  'price' =>
+  double(44.95)
+}
+</pre></p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>Thrown in $strict is not a boolean value.</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>Thrown if a given key is not found in $input and $strict is true.</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$input</h4>
+                                                <code>array</code><p><p>The array to select from.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$keys</h4>
+                                                <code>array</code><p><p>The keys to select from input.</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$strict</h4>
+                                                <code>boolean</code><p><p>Flag to throw Exception if the given $keys are not found in $input.</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
                     
                     
                                                         </div>
@@ -706,7 +789,7 @@ Output:</p>
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Mon, 10 Feb 2014 16:59:09 -0500.<br/>
+            generated on Mon, 24 Mar 2014 11:48:28 -0400.<br/>
     </footer>
     </body>
 </html>
