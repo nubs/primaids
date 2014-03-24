@@ -512,4 +512,20 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
         $input = ['d' => 'lemon', 'a' => 'orange', 'b' => 'banana', 'c' => 'apple'];
         Arrays::subSet($input, ['a', 'notThere'], true);
     }
+
+    /**
+     * Verify subSet throws if a value within $keys is neither a string or integer.
+     *
+     * @test
+     * @covers ::subSet
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Key '1' was not an integer or string
+     *
+     * @return void
+     */
+    public function subSetInvalidKey()
+    {
+        $input = ['d' => 'lemon', 'a' => 'orange', 'b' => 'banana', 'c' => 'apple'];
+        Arrays::subSet($input, ['a', true], true);
+    }
 }

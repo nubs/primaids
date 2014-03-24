@@ -393,7 +393,11 @@ class Arrays
         }
 
         $result = [];
-        foreach ($keys as $key) {
+        foreach ($keys as $i => $key) {
+            if (!is_string($key) && !is_int($key)) {
+                throw new \InvalidArgumentException("Key '{$i}' was not an integer or string");
+            }
+
             if (array_key_exists($key, $input)) {
                 $result[$key] = $input[$key];
                 continue;
