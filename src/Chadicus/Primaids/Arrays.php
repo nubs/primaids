@@ -377,6 +377,35 @@ class Arrays
     /**
      * Return an array containing a subset of the given $input array.
      *
+     * Example:
+     * <pre>
+     * use Chadicus\Primaids\Arrays;
+     * $full = [
+     *     'author' => 'Gambardella, Matthew',
+     *     'title' => 'XML Developer\'s Guide',
+     *     'genre' => 'Computer',
+     *     'price' => 44.95,
+     *     'publishDate' => 970372800,
+     *     'description' => 'An in-depth look at creating applications with XML.',
+     *     'id' => 'bk101',
+     *     'url' => '/books/bk101',
+     * ];
+     * $minimal = Arrays::subSet($full, ['url', 'title', 'price']);
+     * var_dump($minimal);
+     * </pre>
+     * <br />
+     * Output:
+     * <pre>
+     * array(3) {
+     *   'url' =>
+     *   string(12) "/books/bk101"
+     *   'title' =>
+     *   string(21) "XML Developer's Guide"
+     *   'price' =>
+     *   double(44.95)
+     * }
+     * </pre>
+     *
      * @param array   $input  The array to select from.
      * @param array   $keys   The keys to select from input.
      * @param boolean $strict Flag to throw Exception if the given $keys are not found in $input.
