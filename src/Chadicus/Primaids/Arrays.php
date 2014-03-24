@@ -373,4 +373,37 @@ class Arrays
 
         return $result;
     }
+
+    /**
+     * Return an array containing a subset of the given $input array.
+     *
+     * @param array   $input  The array to select from.
+     * @param array   $keys   The keys to select from input.
+     * @param boolean $strict Flag to throw Exception if the given $keys are not found in $input.
+     *
+     * @return array
+     *
+     * @throws \InvalidArgumentException Thrown in $strict is not a boolean value.
+     * @throws \OutOfBoundsException Thrown if a given key is not found in $input and $strict is true.
+     */
+    final public static function subSet(array $input, array $keys, $strict = false)
+    {
+        if ($strict !== true && $strict !== false) {
+            throw new \InvalidArgumentException('$strict must be a boolean value');
+        }
+
+        $result = [];
+        foreach ($keys as $key) {
+            if (array_key_exists($key, $input)) {
+                $result[$key] = $input[$key];
+                continue;
+            }
+
+            if ($strict) {
+                throw new \OutOfBoundsException("Key '{$key}' was not found in input array");
+            }
+        }
+
+        return $result;
+    }
 }

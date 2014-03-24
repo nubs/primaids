@@ -453,4 +453,63 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($expected, Arrays::groupBy($input, 'target'));
     }
+
+    /**
+     * Verifies basic behavior of subSet().
+     *
+     * @test
+     * @covers ::subSet
+     *
+     * @return void
+     */
+    public function subSet()
+    {
+        $input = ['d' => 'lemon', 'a' => 'orange', 'b' => 'banana', 'c' => 'apple'];
+        $this->assertSame(['d' => 'lemon', 'c' => 'apple'], Arrays::subSet($input, ['d', 'c']));
+    }
+
+    /**
+     * Verifies subSet does not throw if $strict is false and a $key is not present in $input.
+     *
+     * @test
+     * @covers ::subSet
+     *
+     * @return void
+     */
+    public function subSetMissingKey()
+    {
+        $input = ['d' => 'lemon', 'a' => 'orange', 'b' => 'banana', 'c' => 'apple'];
+        $this->assertSame(['d' => 'lemon'], Arrays::subSet($input, ['d', 'notThere']));
+    }
+
+    /**
+     * Verify $strict param must be boolean.
+     *
+     * @test
+     * @covers ::subSet
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage $strict must be a boolean value
+     *
+     * @return void
+     */
+    public function subSetStrictNotBoolean()
+    {
+        Arrays::subSet([], [], 'not boolean');
+    }
+
+    /**
+     * Verify $strict param must be boolean.
+     *
+     * @test
+     * @covers ::subSet
+     * @expectedException \OutOfBoundsException
+     * @expectedExceptionMessage Key 'notThere' was not found in input array
+     *
+     * @return void
+     */
+    public function subSetStrictMissingKey()
+    {
+        $input = ['d' => 'lemon', 'a' => 'orange', 'b' => 'banana', 'c' => 'apple'];
+        Arrays::subSet($input, ['a', 'notThere'], true);
+    }
 }
