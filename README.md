@@ -6,7 +6,7 @@ A collection of utility classes to work with PHP primitive types.
 
 ## Requirements
 
-Encapsules requires PHP 5.4 (or later).
+Primaids requires PHP 5.4 (or later).
 
 ##Composer
 To add the library as a local, per-project dependency use [Composer](http://getcomposer.org)! Simply add a dependency on
@@ -15,7 +15,7 @@ To add the library as a local, per-project dependency use [Composer](http://getc
 ```json
 {
     "require": {
-        "chadicus/primaids": "~1.0"
+        "chadicus/primaids": "~2.0"
     }
 }
 ```
