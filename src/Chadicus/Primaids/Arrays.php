@@ -31,25 +31,9 @@ class Arrays
      *                                 values.
      *
      * @return string The formatted string.
-     *
-     * @throws \InvalidArgumentException Thrown if $format is not a non-empty string.
-     * @throws \InvalidArgumentException Thrown if $keyPlaceHolder is not a non-empty string.
-     * @throws \InvalidArgumentException Thrown if $valuePlaceHolder is not a non-empty string.
      */
     final public static function format(array $array, $format, $keyPlaceHolder = '{key}', $valuePlaceHolder = '{value}')
     {
-        if (!is_string($format) || trim($format) == '') {
-            throw new \InvalidArgumentException('$format must be a non-empty string');
-        }
-
-        if (!is_string($keyPlaceHolder) || trim($keyPlaceHolder) == '') {
-            throw new \InvalidArgumentException('$keyPlaceHolder must be a non-empty string');
-        }
-
-        if (!is_string($valuePlaceHolder) || trim($valuePlaceHolder) == '') {
-            throw new \InvalidArgumentException('$valuePlaceHolder must be a non-empty string');
-        }
-
         $result = '';
         foreach ($array as $key => $value) {
             $result .= str_replace([$keyPlaceHolder, $valuePlaceHolder], [$key, $value], $format);
@@ -118,23 +102,23 @@ class Arrays
      * @param array          $array    The array to search.
      * @param string|integer $key      The index of the string value.
      * @param callable       $callable The user function to call with the array value.
+     * @param boolean        $strict   Flag to throw Exception if the given $key is not found in $array.
      *
      * @return mixed The return value of the callable.
      *
-     * @throws \InvalidArgumentException Thrown if $key is not a string or integer.
      * @throws \OutOfBoundsException Thrown if $key is not an index of $array.
      */
-    final public static function getAndCall(array $array, $key, callable $callable)
+    final public static function getAndCall(array $array, $key, callable $callable, $strict = false)
     {
-        if (!is_string($key) && !is_int($key)) {
-            throw new \InvalidArgumentException('$key must be a string or integer');
+        if (array_key_exists($key, $array)) {
+            return call_user_func_array($callable, [$array[$key]]);
         }
 
-        if (!array_key_exists($key, $array)) {
-            throw new \OutOfBoundsException("'{$key}' was not a valid key");
+        if ((bool)$strict) {
+            throw new \OutOfBoundsException("Key '{$key}' was not found in input array");
         }
 
-        return call_user_func_array($callable, [$array[$key]]);
+        return null;
     }
 
     /**
@@ -161,32 +145,30 @@ class Arrays
      * scott
      * </pre>
      *
-     * @param array  $array        The array to traverse.
-     * @param string $delimitedKey A string of keys to traverse into the array.
-     * @param string $delimiter    A string specifiying how the keys are delimited. The default is '.'.
+     * @param array   $array        The array to traverse.
+     * @param string  $delimitedKey A string of keys to traverse into the array.
+     * @param string  $delimiter    A string specifiying how the keys are delimited. The default is '.'.
+     * @param boolean $strict       Flag to throw Exception if any part of the given $delimitedKey is not found in $array.
      *
      * @return mixed The value a the inner most key or null if a key does not exist.
      *
-     * @throws \InvalidArgumentException Thrown if $delimitedKey is not a non-empty string.
-     * @throws \InvalidArgumentException Thrown if $delimiter is not a non-empty string.
+     * @throws \OutOfBoundsException Thrown if $key is not an index of $array.
      */
-    final public static function getNested(array $array, $delimitedKey, $delimiter = '.')
+    final public static function getNested(array $array, $delimitedKey, $delimiter = '.', $strict = false)
     {
-        if (!is_string($delimitedKey) || trim($delimitedKey) == '') {
-            throw new \InvalidArgumentException('$delimitedKey must be a non-empty string');
-        }
-
-        if (!is_string($delimiter) || trim($delimiter) == '') {
-            throw new \InvalidArgumentException('$delimiter must be a non-empty string');
-        }
 
         $pointer = $array;
         foreach (explode($delimiter, $delimitedKey) as $key) {
-            if (!is_array($pointer) || !array_key_exists($key, $pointer)) {
-                return null;
+            if (is_array($pointer) && array_key_exists($key, $pointer)) {
+                $pointer = $pointer[$key];
+                continue;
             }
 
-            $pointer = $pointer[$key];
+            if ((bool)$strict) {
+                throw new \OutOfBoundsException("Key '{$key}' was not found in input array");
+            }
+
+            return null;
         }
 
         return $pointer;
@@ -210,32 +192,26 @@ class Arrays
      * }
      * </pre>
      *
-     * @param array  &$array         The array that contains a value at index $sourceKey.
-     * @param string $sourceKey      The index of the source value.
-     * @param string $destinationKey The new index name.
+     * @param array   &$array         The array that contains a value at index $sourceKey.
+     * @param string  $sourceKey      The index of the source value.
+     * @param string  $destinationKey The new index name.
+     * @param boolean $strict         Flag to throw Exception if the given $sourceKey is not found in $array.
      *
      * @return void
      *
-     * @throws \InvalidArgumentException Thrown if $sourceKey is not a string or integer.
-     * @throws \InvalidArgumentException Thrown if $destinationKey is not a string or integer.
      * @throws \OutOfBoundsException Thrown if $sourceKey is not an index of $array.
      */
-    final public static function rename(array &$array, $sourceKey, $destinationKey)
+    final public static function rename(array &$array, $sourceKey, $destinationKey, $strict = false)
     {
-        if (!is_string($sourceKey) && !is_int($sourceKey)) {
-            throw new \InvalidArgumentException('$sourceKey must be a string or integer');
+        if (array_key_exists($sourceKey, $array)) {
+            $array[$destinationKey] = $array[$sourceKey];
+            unset($array[$sourceKey]);
+            return;
         }
 
-        if (!is_string($destinationKey) && !is_int($destinationKey)) {
-            throw new \InvalidArgumentException('$destinationKey must be a string or integer');
+        if ((bool)$strict) {
+            throw new \OutOfBoundsException("Key '{$sourceKey}' was not found in input array");
         }
-
-        if (!array_key_exists($sourceKey, $array)) {
-            throw new \OutOfBoundsException("'{$sourceKey}' was not a valid key");
-        }
-
-        $array[$destinationKey] = $array[$sourceKey];
-        unset($array[$sourceKey]);
     }
 
     /**
@@ -261,19 +237,13 @@ class Arrays
      * @param array          &$array     The array to add the value.
      * @param string|integer $key        The index at which the value will be set.
      * @param mixed          $value      The value to be added.
-     * @param mixed          $expression The expression to evaluate.
+     * @param boolean        $expression The expression to evaluate.
      *
      * @return void
-     *
-     * @throws \InvalidArgumentException Thrown if $key is not a string or integer.
      */
     final public static function setIfTrue(array &$array, $key, $value, $expression)
     {
-        if (!is_string($key) && !is_int($key)) {
-            throw new \InvalidArgumentException('$key must be a string or integer');
-        }
-
-        if ($expression) {
+        if ((bool)$expression) {
             $array[$key] = $value;
         }
     }
@@ -412,27 +382,18 @@ class Arrays
      *
      * @return array
      *
-     * @throws \InvalidArgumentException Thrown in $strict is not a boolean value.
      * @throws \OutOfBoundsException Thrown if a given key is not found in $input and $strict is true.
      */
     final public static function subSet(array $input, array $keys, $strict = false)
     {
-        if ($strict !== true && $strict !== false) {
-            throw new \InvalidArgumentException('$strict must be a boolean value');
-        }
-
         $result = [];
         foreach ($keys as $i => $key) {
-            if (!is_string($key) && !is_int($key)) {
-                throw new \InvalidArgumentException("Key '{$i}' was not an integer or string");
-            }
-
             if (array_key_exists($key, $input)) {
                 $result[$key] = $input[$key];
                 continue;
             }
 
-            if ($strict) {
+            if ((bool)$strict) {
                 throw new \OutOfBoundsException("Key '{$key}' was not found in input array");
             }
         }

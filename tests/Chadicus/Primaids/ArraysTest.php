@@ -27,60 +27,6 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Verifies behaviour when format is called with an invalid $format parameter.
-     *
-     * @param mixed $format The invalid format.
-     *
-     * @test
-     * @covers ::format
-     * @dataProvider badFormats
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage $format must be a non-empty string
-     *
-     * @return void
-     */
-    public function formatWithInvalidFormat($format)
-    {
-        Arrays::format([], $format);
-    }
-
-    /**
-     * Verifies behaviour when format is called with an invalid $keyPlaceHolder parameter.
-     *
-     * @param mixed $keyPlaceHolder The invalid key place-holder.
-     *
-     * @test
-     * @covers ::format
-     * @dataProvider badKeyPlaceHolders
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage $keyPlaceHolder must be a non-empty string
-     *
-     * @return void
-     */
-    public function formatWithInvalidKeyPlaceHolder($keyPlaceHolder)
-    {
-        Arrays::format([], 'not under test', $keyPlaceHolder);
-    }
-
-    /**
-     * Verifies behaviour when format is called with an invalid $valuePlaceHolder parameter.
-     *
-     * @param mixed $valuePlaceHolder The invalid value place-holder.
-     *
-     * @test
-     * @covers ::format
-     * @dataProvider badValuePlaceHolders
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage $valuePlaceHolder must be a non-empty string
-     *
-     * @return void
-     */
-    public function formatWithInvalidValuePlaceHolder($valuePlaceHolder)
-    {
-        Arrays::format([], 'not under test', 'not under tests', $valuePlaceHolder);
-    }
-
-    /**
      * Verifies basic behavior of the getAndUnset method.
      *
      * @test
@@ -133,18 +79,16 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Verify behaviour of getAndCall with invalid key parameter.
+     * Verify behaviour of getAndCall with missing key parameter.
      *
      * @test
      * @covers ::getAndCall
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage $key must be a string or integer
      *
      * @return void
      */
-    public function getAndCallWithInvalidKey()
+    public function getAndCallWithMissingKey()
     {
-        Arrays::getAndCall(['a', 'b'], true, 'strtoupper');
+        $this->assertNull(Arrays::getAndCall(['a', 'b'], 'c', 'strtoupper'));
     }
 
     /**
@@ -153,13 +97,13 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      * @test
      * @covers ::getAndCall
      * @expectedException \OutOfBoundsException
-     * @expectedExceptionMessage 'foo' was not a valid key
+     * @expectedExceptionMessage Key 'c' was not found in input array
      *
      * @return void
      */
-    public function getAndCallWithNonExistentKey()
+    public function getAndCallWithMissingKeyStrict()
     {
-        Arrays::getAndCall(['a', 'b'], 'foo', 'strtoupper');
+        Arrays::getAndCall(['a', 'b'], 'c', 'strtoupper', true);
     }
 
     /**
@@ -219,70 +163,6 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Verify behavior when invalid $delimitedKey values are given to getNested.
-     *
-     * @param mixed $delimitedKey The invalid delimitedKey.
-     *
-     * @test
-     * @covers ::getNested
-     * @dataProvider badDelimitedKeys
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage $delimitedKey must be a non-empty string
-     *
-     * @return void
-     */
-    public function getNestedWithInvalidDelimitedKey($delimitedKey)
-    {
-        Arrays::getNested([], $delimitedKey);
-    }
-
-    /**
-     * Data provider method for getNestedWithInvalidDelimitedKey.
-     *
-     * @return array
-     */
-    public function badDelimitedKeys()
-    {
-        return [
-            'emptyString' => [''],
-            'null' => [null],
-            'nonString' => [1],
-        ];
-    }
-
-    /**
-     * Verify behavior when invalid $delimiter values are given to getNested.
-     *
-     * @param mixed $delimiter The invalid delimiter.
-     *
-     * @test
-     * @covers ::getNested
-     * @dataProvider badDelimiters
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage $delimiter must be a non-empty string
-     *
-     * @return void
-     */
-    public function getNestedWithInvalidDelimiter($delimiter)
-    {
-        Arrays::getNested([], 'not.under.test', $delimiter);
-    }
-
-    /**
-     * Data provider method for getNestedWithInvalidDelimiter.
-     *
-     * @return array
-     */
-    public function badDelimiters()
-    {
-        return [
-            'emptyString' => [''],
-            'null' => [null],
-            'nonString' => [1],
-        ];
-    }
-
-    /**
      * Verify behavior when the given delimitedKey does not exist in the given array.
      *
      * @test
@@ -294,6 +174,22 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
     {
         $array = ['db' => ['host' => 'localhost', 'login' => [ 'username' => 'scott', 'password' => 'tiger']]];
         $this->assertNull(Arrays::getNested($array, 'db.notfound.username'));
+    }
+
+    /**
+     * Verify behavior when the given delimitedKey does not exist in the given array and $strict is true.
+     *
+     * @test
+     * @covers ::getNested
+     * @expectedException \OutOfBoundsException
+     * @expectedExceptionMessage Key 'notfound' was not found in input array
+     *
+     * @return void
+     */
+    public function getNestedPathNotFoundStrict()
+    {
+        $array = ['db' => ['host' => 'localhost', 'login' => [ 'username' => 'scott', 'password' => 'tiger']]];
+        Arrays::getNested($array, 'db.notfound.username', '.', true);
     }
 
     /**
@@ -312,51 +208,34 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Verify behavior when an invalid $sourceKey is given to rename().
-     *
-     * @test
-     * @covers ::rename
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage $sourceKey must be a string or integer
-     *
-     * @return void
-     */
-    public function renameWithInvalidSourceKey()
-    {
-        $array = ['a', 'b'];
-        Arrays::rename($array, false, 2);
-    }
-
-    /**
-     * Verify behavior when an invalid $destinationKey is given to rename().
-     *
-     * @test
-     * @covers ::rename
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage $destinationKey must be a string or integer
-     *
-     * @return void
-     */
-    public function renameWithInvalidDestinationKey()
-    {
-        $array = ['a', 'b'];
-        Arrays::rename($array, 0, false);
-    }
-
-    /**
      * Verify behaviour of rename with $sourceKey parameter that does not exist in the array.
      *
      * @test
      * @covers ::rename
      * @expectedException \OutOfBoundsException
-     * @expectedExceptionMessage 'foo' was not a valid key
+     * @expectedExceptionMessage Key 'foo' was not found in input array
+     *
+     * @return void
+     */
+    public function renameWithMissingSourceKeyStrict()
+    {
+        $array = ['a', 'b'];
+        Arrays::rename($array, 'foo', 2, true);
+    }
+
+    /**
+     * Verify array remains unchanged if the $sourceKey does not exist in the input array and $strict is false.
+     *
+     * @test
+     * @covers ::rename
      *
      * @return void
      */
     public function renameWithMissingSourceKey()
     {
         $array = ['a', 'b'];
-        Arrays::rename($array, 'foo', 2);
+        Arrays::rename($array, 'foo', 2, false);
+        $this->assertSame(['a', 'b'], $array);
     }
 
     /**
@@ -374,22 +253,6 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(['a', 'b'], $a);
         Arrays::setIfTrue($a, 2, 'c', false);
         $this->assertSame(['a', 'b'], $a);
-    }
-
-    /**
-     * Verify behavior of setIfTrue if $key is not a string or integer.
-     *
-     * @test
-     * @covers ::setIfTrue
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage $key must be a string or integer
-     *
-     * @return void
-     */
-    public function setIfTrueWithInvalidKey()
-    {
-        $a = ['a'];
-        Arrays::setIfTrue($a, new \StdClass(), 'b', true);
     }
 
     /**
@@ -487,21 +350,6 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @covers ::subSet
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage $strict must be a boolean value
-     *
-     * @return void
-     */
-    public function subSetStrictNotBoolean()
-    {
-        Arrays::subSet([], [], 'not boolean');
-    }
-
-    /**
-     * Verify $strict param must be boolean.
-     *
-     * @test
-     * @covers ::subSet
      * @expectedException \OutOfBoundsException
      * @expectedExceptionMessage Key 'notThere' was not found in input array
      *
@@ -511,21 +359,5 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
     {
         $input = ['d' => 'lemon', 'a' => 'orange', 'b' => 'banana', 'c' => 'apple'];
         Arrays::subSet($input, ['a', 'notThere'], true);
-    }
-
-    /**
-     * Verify subSet throws if a value within $keys is neither a string or integer.
-     *
-     * @test
-     * @covers ::subSet
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Key '1' was not an integer or string
-     *
-     * @return void
-     */
-    public function subSetInvalidKey()
-    {
-        $input = ['d' => 'lemon', 'a' => 'orange', 'b' => 'banana', 'c' => 'apple'];
-        Arrays::subSet($input, ['a', true], true);
     }
 }
