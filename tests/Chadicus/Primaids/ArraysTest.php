@@ -92,21 +92,6 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Verify behaviour of getAndCall with key parameter that does not exist in the array.
-     *
-     * @test
-     * @covers ::getAndCall
-     * @expectedException \OutOfBoundsException
-     * @expectedExceptionMessage Key 'c' was not found in input array
-     *
-     * @return void
-     */
-    public function getAndCallWithMissingKeyStrict()
-    {
-        Arrays::getAndCall(['a', 'b'], 'c', 'strtoupper', true);
-    }
-
-    /**
      * Data provider method for the formatWithInvalidFormat.
      *
      * @return array
@@ -177,22 +162,6 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Verify behavior when the given delimitedKey does not exist in the given array and $strict is true.
-     *
-     * @test
-     * @covers ::getNested
-     * @expectedException \OutOfBoundsException
-     * @expectedExceptionMessage Key 'notfound' was not found in input array
-     *
-     * @return void
-     */
-    public function getNestedPathNotFoundStrict()
-    {
-        $array = ['db' => ['host' => 'localhost', 'login' => [ 'username' => 'scott', 'password' => 'tiger']]];
-        Arrays::getNested($array, 'db.notfound.username', '.', true);
-    }
-
-    /**
      * Verify basic behavior of rename().
      *
      * @test
@@ -205,22 +174,6 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
         $array = ['a', 'b'];
         Arrays::rename($array, 0, 2);
         $this->assertSame([1 => 'b', 2 => 'a'], $array);
-    }
-
-    /**
-     * Verify behaviour of rename with $sourceKey parameter that does not exist in the array.
-     *
-     * @test
-     * @covers ::rename
-     * @expectedException \OutOfBoundsException
-     * @expectedExceptionMessage Key 'foo' was not found in input array
-     *
-     * @return void
-     */
-    public function renameWithMissingSourceKeyStrict()
-    {
-        $array = ['a', 'b'];
-        Arrays::rename($array, 'foo', 2, true);
     }
 
     /**
@@ -343,21 +296,5 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
     {
         $input = ['d' => 'lemon', 'a' => 'orange', 'b' => 'banana', 'c' => 'apple'];
         $this->assertSame(['d' => 'lemon'], Arrays::subSet($input, ['d', 'notThere']));
-    }
-
-    /**
-     * Verify $strict param must be boolean.
-     *
-     * @test
-     * @covers ::subSet
-     * @expectedException \OutOfBoundsException
-     * @expectedExceptionMessage Key 'notThere' was not found in input array
-     *
-     * @return void
-     */
-    public function subSetStrictMissingKey()
-    {
-        $input = ['d' => 'lemon', 'a' => 'orange', 'b' => 'banana', 'c' => 'apple'];
-        Arrays::subSet($input, ['a', 'notThere'], true);
     }
 }

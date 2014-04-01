@@ -102,20 +102,15 @@ class Arrays
      * @param array          $array    The array to search.
      * @param string|integer $key      The index of the string value.
      * @param callable       $callable The user function to call with the array value.
-     * @param boolean        $strict   Flag to throw Exception if the given $key is not found in $array.
      *
      * @return mixed The return value of the callable.
      *
      * @throws \OutOfBoundsException Thrown if $key is not an index of $array.
      */
-    final public static function getAndCall(array $array, $key, callable $callable, $strict = false)
+    final public static function getAndCall(array $array, $key, callable $callable)
     {
         if (array_key_exists($key, $array)) {
             return call_user_func_array($callable, [$array[$key]]);
-        }
-
-        if ((bool)$strict) {
-            throw new \OutOfBoundsException("Key '{$key}' was not found in input array");
         }
 
         return null;
@@ -145,16 +140,15 @@ class Arrays
      * scott
      * </pre>
      *
-     * @param array   $array        The array to traverse.
-     * @param string  $delimitedKey A string of keys to traverse into the array.
-     * @param string  $delimiter    A string specifiying how the keys are delimited. The default is '.'.
-     * @param boolean $strict       Flag to throw Exception if any part of the given $delimitedKey is not found in $array.
+     * @param array  $array        The array to traverse.
+     * @param string $delimitedKey A string of keys to traverse into the array.
+     * @param string $delimiter    A string specifiying how the keys are delimited. The default is '.'.
      *
      * @return mixed The value a the inner most key or null if a key does not exist.
      *
      * @throws \OutOfBoundsException Thrown if $key is not an index of $array.
      */
-    final public static function getNested(array $array, $delimitedKey, $delimiter = '.', $strict = false)
+    final public static function getNested(array $array, $delimitedKey, $delimiter = '.')
     {
 
         $pointer = $array;
@@ -162,10 +156,6 @@ class Arrays
             if (is_array($pointer) && array_key_exists($key, $pointer)) {
                 $pointer = $pointer[$key];
                 continue;
-            }
-
-            if ((bool)$strict) {
-                throw new \OutOfBoundsException("Key '{$key}' was not found in input array");
             }
 
             return null;
@@ -192,25 +182,18 @@ class Arrays
      * }
      * </pre>
      *
-     * @param array   &$array         The array that contains a value at index $sourceKey.
-     * @param string  $sourceKey      The index of the source value.
-     * @param string  $destinationKey The new index name.
-     * @param boolean $strict         Flag to throw Exception if the given $sourceKey is not found in $array.
+     * @param array  &$array         The array that contains a value at index $sourceKey.
+     * @param string $sourceKey      The index of the source value.
+     * @param string $destinationKey The new index name.
      *
      * @return void
-     *
-     * @throws \OutOfBoundsException Thrown if $sourceKey is not an index of $array.
      */
-    final public static function rename(array &$array, $sourceKey, $destinationKey, $strict = false)
+    final public static function rename(array &$array, $sourceKey, $destinationKey)
     {
         if (array_key_exists($sourceKey, $array)) {
             $array[$destinationKey] = $array[$sourceKey];
             unset($array[$sourceKey]);
             return;
-        }
-
-        if ((bool)$strict) {
-            throw new \OutOfBoundsException("Key '{$sourceKey}' was not found in input array");
         }
     }
 
@@ -333,7 +316,12 @@ class Arrays
     {
         $result = [];
         foreach ($input as $array) {
-            $keyValue = self::getAndUnset($array, $key);
+            $keyValue = null;
+            if (array_key_exists($key, $array)) {
+                $keyValue = $array[$key];
+                unset($array[$key]);
+            }
+
             if (!array_key_exists($keyValue, $result)) {
                 $result[$keyValue] = [];
             }
@@ -376,25 +364,18 @@ class Arrays
      * }
      * </pre>
      *
-     * @param array   $input  The array to select from.
-     * @param array   $keys   The keys to select from input.
-     * @param boolean $strict Flag to throw Exception if the given $keys are not found in $input.
+     * @param array $input The array to select from.
+     * @param array $keys  The keys to select from input.
      *
      * @return array
-     *
-     * @throws \OutOfBoundsException Thrown if a given key is not found in $input and $strict is true.
      */
-    final public static function subSet(array $input, array $keys, $strict = false)
+    final public static function subSet(array $input, array $keys)
     {
         $result = [];
         foreach ($keys as $i => $key) {
             if (array_key_exists($key, $input)) {
                 $result[$key] = $input[$key];
                 continue;
-            }
-
-            if ((bool)$strict) {
-                throw new \OutOfBoundsException("Key '{$key}' was not found in input array");
             }
         }
 
