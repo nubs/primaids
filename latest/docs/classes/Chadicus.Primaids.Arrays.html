@@ -226,19 +226,6 @@ Fruit: apples .89 per pound
                                     <table class="table">
                                                                                     <tr>
                                                 <th>
-                                                    throws
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        <p>Thrown if $format is not a non-empty string.</p>
-                                                                                                                                                                        
-                                                                                                                                                                        <p>Thrown if $keyPlaceHolder is not a non-empty string.</p>
-                                                                                                                                                                        
-                                                                                                                                                                        <p>Thrown if $valuePlaceHolder is not a non-empty string.</p>
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
                                                     
                                                 </th>
                                                 <td>
@@ -328,7 +315,7 @@ array(2) {
                                             <a id="method_getAndCall"></a>
                         <div class="element clickable method public  method_getAndCall" data-toggle="collapse" data-target=".method_getAndCall .collapse">
                             <h2>Gets the value at index $key and passes it as a parameter to $callable returning the result of the callable call.</h2>
-                            <pre>getAndCall(array $array, string|integer $key, callable $callable) : mixed</pre>
+                            <pre>getAndCall(array $array, string|integer $key, callable $callable, boolean $strict = false) : mixed</pre>
                             <div class="labels">
                                                                 <span class="label">static</span>                                <span class="label">final</span>                                                                                            </div>
                             <div class="row collapse">
@@ -353,8 +340,6 @@ Output:</p>
                                                     throws
                                                 </th>
                                                 <td>
-                                                                                                                                                                        
-                                                                                                                                                                        <p>Thrown if $key is not a string or integer.</p>
                                                                                                                                                                         
                                                                                                                                                                         <p>Thrown if $key is not an index of $array.</p>
                                                                                                     </td>
@@ -381,6 +366,10 @@ Output:</p>
                                                 <h4>$callable</h4>
                                                 <code>callable</code><p><p>The user function to call with the array value.</p></p>
                                             </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$strict</h4>
+                                                <code>boolean</code><p><p>Flag to throw Exception if the given $key is not found in $array.</p></p>
+                                            </div>
                                                                             
                                                                             <h3>Response</h3>
                                         <code>mixed</code><p><p>The return value of the callable.</p></p>
@@ -390,7 +379,7 @@ Output:</p>
                                             <a id="method_getNested"></a>
                         <div class="element clickable method public  method_getNested" data-toggle="collapse" data-target=".method_getNested .collapse">
                             <h2>Traverses the given $array using the key path specified by $delimitedKey and returns the final value.</h2>
-                            <pre>getNested(array $array, string $delimitedKey, string $delimiter = &#039;.&#039;) : mixed</pre>
+                            <pre>getNested(array $array, string $delimitedKey, string $delimiter = &#039;.&#039;, boolean $strict = false) : mixed</pre>
                             <div class="labels">
                                                                 <span class="label">static</span>                                <span class="label">final</span>                                                                                            </div>
                             <div class="row collapse">
@@ -423,9 +412,7 @@ Output:</p>
                                                 </th>
                                                 <td>
                                                                                                                                                                         
-                                                                                                                                                                        <p>Thrown if $delimitedKey is not a non-empty string.</p>
-                                                                                                                                                                        
-                                                                                                                                                                        <p>Thrown if $delimiter is not a non-empty string.</p>
+                                                                                                                                                                        <p>Thrown if $key is not an index of $array.</p>
                                                                                                     </td>
                                             </tr>
                                                                                     <tr>
@@ -450,6 +437,10 @@ Output:</p>
                                                 <h4>$delimiter</h4>
                                                 <code>string</code><p><p>A string specifiying how the keys are delimited. The default is '.'.</p></p>
                                             </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$strict</h4>
+                                                <code>boolean</code><p><p>Flag to throw Exception if any part of the given $delimitedKey is not found in $array.</p></p>
+                                            </div>
                                                                             
                                                                             <h3>Response</h3>
                                         <code>mixed</code><p><p>The value a the inner most key or null if a key does not exist.</p></p>
@@ -459,7 +450,7 @@ Output:</p>
                                             <a id="method_rename"></a>
                         <div class="element clickable method public  method_rename" data-toggle="collapse" data-target=".method_rename .collapse">
                             <h2>Move the element at index $sourceKey to index $destinationKey.</h2>
-                            <pre>rename(array &$array, string $sourceKey, string $destinationKey) : void</pre>
+                            <pre>rename(array &$array, string $sourceKey, string $destinationKey, boolean $strict = false) : void</pre>
                             <div class="labels">
                                                                 <span class="label">static</span>                                <span class="label">final</span>                                                                                            </div>
                             <div class="row collapse">
@@ -486,10 +477,6 @@ array(1) {
                                                 </th>
                                                 <td>
                                                                                                                                                                         
-                                                                                                                                                                        <p>Thrown if $sourceKey is not a string or integer.</p>
-                                                                                                                                                                        
-                                                                                                                                                                        <p>Thrown if $destinationKey is not a string or integer.</p>
-                                                                                                                                                                        
                                                                                                                                                                         <p>Thrown if $sourceKey is not an index of $array.</p>
                                                                                                     </td>
                                             </tr>
@@ -515,6 +502,10 @@ array(1) {
                                                 <h4>$destinationKey</h4>
                                                 <code>string</code><p><p>The new index name.</p></p>
                                             </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$strict</h4>
+                                                <code>boolean</code><p><p>Flag to throw Exception if the given $sourceKey is not found in $array.</p></p>
+                                            </div>
                                                                             
                                                                     </div>
                             </div>
@@ -522,7 +513,7 @@ array(1) {
                                             <a id="method_setIfTrue"></a>
                         <div class="element clickable method public  method_setIfTrue" data-toggle="collapse" data-target=".method_setIfTrue .collapse">
                             <h2>Adds $value to $array at index $key if the given $expression is equivalent to true.</h2>
-                            <pre>setIfTrue(array &$array, string|integer $key, mixed $value, mixed $expression) : void</pre>
+                            <pre>setIfTrue(array &$array, string|integer $key, mixed $value, boolean $expression) : void</pre>
                             <div class="labels">
                                                                 <span class="label">static</span>                                <span class="label">final</span>                                                                                            </div>
                             <div class="row collapse">
@@ -547,15 +538,6 @@ Output:</p>
                                     <table class="table">
                                                                                     <tr>
                                                 <th>
-                                                    throws
-                                                </th>
-                                                <td>
-                                                                                                                                                                        
-                                                                                                                                                                        <p>Thrown if $key is not a string or integer.</p>
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
                                                     
                                                 </th>
                                                 <td>
@@ -578,7 +560,7 @@ Output:</p>
                                             </div>
                                                                                     <div class="subelement argument">
                                                 <h4>$expression</h4>
-                                                <code>mixed</code><p><p>The expression to evaluate.</p></p>
+                                                <code>boolean</code><p><p>The expression to evaluate.</p></p>
                                             </div>
                                                                             
                                                                     </div>
@@ -734,8 +716,6 @@ Output:</p>
                                                 </th>
                                                 <td>
                                                                                                                                                                         
-                                                                                                                                                                        <p>Thrown in $strict is not a boolean value.</p>
-                                                                                                                                                                        
                                                                                                                                                                         <p>Thrown if a given key is not found in $input and $strict is true.</p>
                                                                                                     </td>
                                             </tr>
@@ -789,7 +769,7 @@ Output:</p>
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Tue, 01 Apr 2014 13:45:36 -0400.<br/>
+            generated on Tue, 01 Apr 2014 15:54:17 -0400.<br/>
     </footer>
     </body>
 </html>
