@@ -3,66 +3,29 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "bb74ae8b3398d4a82a20e981a5f40c3b",
+    "hash": "759ee9f158e5b90ddb67a0e7e930b8c9",
     "packages": [
 
     ],
     "packages-dev": [
         {
-            "name": "chadicus/coding-standard",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/chadicus/coding-standard.git",
-                "reference": "48bdbd1f57fa89eebaabf6918e61c3845c9c7ad9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/chadicus/coding-standard/zipball/48bdbd1f57fa89eebaabf6918e61c3845c9c7ad9",
-                "reference": "48bdbd1f57fa89eebaabf6918e61c3845c9c7ad9",
-                "shasum": ""
-            },
-            "require": {
-                "squizlabs/php_codesniffer": "~1.4"
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Chad Gray",
-                    "email": "chadwickgray@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Chadicus Coding standard",
-            "keywords": [
-                "coding",
-                "phpcs",
-                "standard"
-            ],
-            "time": "2013-10-23 21:31:26"
-        },
-        {
             "name": "cilex/cilex",
-            "version": "1.0.1",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Cilex/Cilex.git",
-                "reference": "89ff6b821885b3f060d77de4d55ac8b4b9b42162"
+                "reference": "7acd965a609a56d0345e8b6071c261fbdb926cb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Cilex/Cilex/zipball/89ff6b821885b3f060d77de4d55ac8b4b9b42162",
-                "reference": "89ff6b821885b3f060d77de4d55ac8b4b9b42162",
+                "url": "https://api.github.com/repos/Cilex/Cilex/zipball/7acd965a609a56d0345e8b6071c261fbdb926cb5",
+                "reference": "7acd965a609a56d0345e8b6071c261fbdb926cb5",
                 "shasum": ""
             },
             "require": {
                 "cilex/console-service-provider": "1.*",
                 "php": ">=5.3.3",
-                "pimple/pimple": "1.0.*",
+                "pimple/pimple": "~1.0",
                 "symfony/finder": "~2.1",
                 "symfony/process": "~2.1"
             },
@@ -102,7 +65,7 @@
                 "cli",
                 "microframework"
             ],
-            "time": "2013-08-01 15:19:34"
+            "time": "2014-03-29 14:03:13"
         },
         {
             "name": "cilex/console-service-provider",
@@ -289,16 +252,16 @@
         },
         {
             "name": "dompdf/dompdf",
-            "version": "v0.6.0",
+            "version": "v0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dompdf/dompdf.git",
-                "reference": "fbb288daad0096350cdead591dd8d450e490fbd0"
+                "reference": "cf7d8a0a27270418850cc7d7ea532159e5eeb3eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/fbb288daad0096350cdead591dd8d450e490fbd0",
-                "reference": "fbb288daad0096350cdead591dd8d450e490fbd0",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/cf7d8a0a27270418850cc7d7ea532159e5eeb3eb",
+                "reference": "cf7d8a0a27270418850cc7d7ea532159e5eeb3eb",
                 "shasum": ""
             },
             "require": {
@@ -326,7 +289,7 @@
             ],
             "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
             "homepage": "https://github.com/dompdf/dompdf",
-            "time": "2014-02-07 02:58:53"
+            "time": "2014-03-11 01:59:52"
         },
         {
             "name": "erusev/parsedown",
@@ -525,17 +488,81 @@
             "time": "2014-02-10 11:00:05"
         },
         {
-            "name": "monolog/monolog",
-            "version": "1.7.0",
+            "name": "knplabs/knp-menu",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "6225b22de9dcf36546be3a0b2fa8e3d986153f57"
+                "url": "https://github.com/KnpLabs/KnpMenu.git",
+                "reference": "f8e867268f63f561c1adadd6cbb5d8524f921873"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/6225b22de9dcf36546be3a0b2fa8e3d986153f57",
-                "reference": "6225b22de9dcf36546be3a0b2fa8e3d986153f57",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/f8e867268f63f561c1adadd6cbb5d8524f921873",
+                "reference": "f8e867268f63f561c1adadd6cbb5d8524f921873",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "pimple/pimple": "*",
+                "silex/silex": "1.0.*",
+                "twig/twig": ">=1.2,<2.0-dev"
+            },
+            "suggest": {
+                "pimple/pimple": "for the built-in implementations of the menu provider and renderer provider",
+                "silex/silex": "for the integration with your silex application",
+                "twig/twig": "for the TwigRenderer and the integration with your templates"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Knp\\Menu\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christophe Coevoet",
+                    "email": "stof@notk.org"
+                },
+                {
+                    "name": "KnpLabs",
+                    "homepage": "http://knplabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://github.com/KnpLabs/KnpMenu/contributors"
+                }
+            ],
+            "description": "An object oriented menu library",
+            "homepage": "http://knplabs.com",
+            "keywords": [
+                "menu",
+                "tree"
+            ],
+            "time": "2012-06-10 16:20:40"
+        },
+        {
+            "name": "monolog/monolog",
+            "version": "1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/monolog.git",
+                "reference": "392ef35fd470638e08d0160d6b1cbab63cb23174"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/392ef35fd470638e08d0160d6b1cbab63cb23174",
+                "reference": "392ef35fd470638e08d0160d6b1cbab63cb23174",
                 "shasum": ""
             },
             "require": {
@@ -543,11 +570,11 @@
                 "psr/log": "~1.0"
             },
             "require-dev": {
-                "aws/aws-sdk-php": "~2.4.8",
-                "doctrine/couchdb": "dev-master",
-                "mlehner/gelf-php": "1.0.*",
+                "aws/aws-sdk-php": "~2.4, >2.4.8",
+                "doctrine/couchdb": "~1.0@dev",
+                "graylog2/gelf-php": "~1.0",
                 "phpunit/phpunit": "~3.7.0",
-                "raven/raven": "0.5.*",
+                "raven/raven": "~0.5",
                 "ruflin/elastica": "0.90.*"
             },
             "suggest": {
@@ -555,19 +582,20 @@
                 "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
                 "ext-mongo": "Allow sending log messages to a MongoDB server",
-                "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server",
+                "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
                 "raven/raven": "Allow sending log messages to a Sentry server",
+                "rollbar/rollbar": "Allow sending log messages to Rollbar",
                 "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.7.x-dev"
+                    "dev-master": "1.8.x-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Monolog": "src/"
+                "psr-4": {
+                    "Monolog\\": "src/Monolog"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -589,7 +617,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-11-14 19:48:31"
+            "time": "2014-03-23 19:50:26"
         },
         {
             "name": "nikic/php-parser",
@@ -805,16 +833,16 @@
         },
         {
             "name": "phpdocumentor/phpdocumentor",
-            "version": "v2.3.2",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/phpDocumentor2.git",
-                "reference": "0f95a9ddd5340423a9e8a6a532ec211ae57b1d24"
+                "reference": "d7503ada7386aa6b2956224d50a8d0226a22a99f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/phpDocumentor2/zipball/0f95a9ddd5340423a9e8a6a532ec211ae57b1d24",
-                "reference": "0f95a9ddd5340423a9e8a6a532ec211ae57b1d24",
+                "url": "https://api.github.com/repos/phpDocumentor/phpDocumentor2/zipball/d7503ada7386aa6b2956224d50a8d0226a22a99f",
+                "reference": "d7503ada7386aa6b2956224d50a8d0226a22a99f",
                 "shasum": ""
             },
             "require": {
@@ -822,6 +850,7 @@
                 "dompdf/dompdf": "~0.6",
                 "erusev/parsedown": "~0.7",
                 "jms/serializer": "~0.12",
+                "knplabs/knp-menu": "~1.1",
                 "monolog/monolog": "~1.6",
                 "php": ">=5.3.3",
                 "phpdocumentor/fileset": "~1.0",
@@ -844,13 +873,13 @@
                 "symfony/stopwatch": "~2.3",
                 "symfony/validator": "~2.2",
                 "twig/twig": "~1.3",
-                "zendframework/zend-cache": "2.*",
-                "zendframework/zend-config": "2.*",
-                "zendframework/zend-filter": "2.*",
-                "zendframework/zend-i18n": "2.*",
-                "zendframework/zend-serializer": "2.*",
-                "zendframework/zend-servicemanager": "2.*",
-                "zendframework/zend-stdlib": "2.*",
+                "zendframework/zend-cache": "2.1.*",
+                "zendframework/zend-config": "2.1.*",
+                "zendframework/zend-filter": "2.1.*",
+                "zendframework/zend-i18n": "2.1.*",
+                "zendframework/zend-serializer": "2.1.*",
+                "zendframework/zend-servicemanager": "2.1.*",
+                "zendframework/zend-stdlib": "2.1.*",
                 "zetacomponents/document": ">=1.3.1"
             },
             "require-dev": {
@@ -860,6 +889,10 @@
                 "phpunit/phpunit": "~3.7",
                 "squizlabs/php_codesniffer": "~1.4",
                 "symfony/expression-language": "~2.4"
+            },
+            "suggest": {
+                "ext-twig": "Enabling the twig extension improves the generation of twig based templates.",
+                "ext-xslcache": "Enabling the XSLCache extension improves the generation of xml based templates."
             },
             "bin": [
                 "bin/phpdoc.php"
@@ -891,26 +924,26 @@
                 "documentation",
                 "phpdoc"
             ],
-            "time": "2014-03-07 07:32:00"
+            "time": "2014-04-01 18:14:51"
         },
         {
             "name": "phpdocumentor/reflection",
-            "version": "1.0.3",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/Reflection.git",
-                "reference": "7fa71b389e718ea5c33fa0cf0eb45280a4513b7d"
+                "reference": "df82db631acd60739c8796b3c6d5e4da970808f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/Reflection/zipball/7fa71b389e718ea5c33fa0cf0eb45280a4513b7d",
-                "reference": "7fa71b389e718ea5c33fa0cf0eb45280a4513b7d",
+                "url": "https://api.github.com/repos/phpDocumentor/Reflection/zipball/df82db631acd60739c8796b3c6d5e4da970808f3",
+                "reference": "df82db631acd60739c8796b3c6d5e4da970808f3",
                 "shasum": ""
             },
             "require": {
-                "nikic/php-parser": ">=0.9",
+                "nikic/php-parser": "0.9.4",
                 "php": ">=5.3.3",
-                "phpdocumentor/reflection-docblock": "2.*@dev",
+                "phpdocumentor/reflection-docblock": "2.*",
                 "psr/log": "~1.0"
             },
             "require-dev": {
@@ -940,20 +973,20 @@
                 "reflection",
                 "static analysis"
             ],
-            "time": "2014-02-16 15:05:27"
+            "time": "2014-03-28 11:20:22"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "cfb3ebea556b24df8f8f3745d61478293cb5a166"
+                "reference": "0bca477a34baea39add016af90046f002a175619"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/cfb3ebea556b24df8f8f3745d61478293cb5a166",
-                "reference": "cfb3ebea556b24df8f8f3745d61478293cb5a166",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/0bca477a34baea39add016af90046f002a175619",
+                "reference": "0bca477a34baea39add016af90046f002a175619",
                 "shasum": ""
             },
             "require": {
@@ -989,7 +1022,7 @@
                     "email": "mike.vanriel@naenius.com"
                 }
             ],
-            "time": "2013-12-05 08:16:55"
+            "time": "2014-03-28 09:21:30"
         },
         {
             "name": "phpdocumentor/template-abstract",
@@ -1057,16 +1090,16 @@
         },
         {
             "name": "phpdocumentor/template-clean",
-            "version": "1.0.2",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/template.clean.git",
-                "reference": "9b7db5988447f901bfd04b1e2ff1adba951d4374"
+                "reference": "78f2048c5ecd62f0b79dbac093687d78a66d1806"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/template.clean/zipball/9b7db5988447f901bfd04b1e2ff1adba951d4374",
-                "reference": "9b7db5988447f901bfd04b1e2ff1adba951d4374",
+                "url": "https://api.github.com/repos/phpDocumentor/template.clean/zipball/78f2048c5ecd62f0b79dbac093687d78a66d1806",
+                "reference": "78f2048c5ecd62f0b79dbac093687d78a66d1806",
                 "shasum": ""
             },
             "require": {
@@ -1085,7 +1118,7 @@
                 "responsive",
                 "template"
             ],
-            "time": "2013-11-06 21:30:35"
+            "time": "2014-03-29 08:22:15"
         },
         {
             "name": "phpdocumentor/template-new-black",
@@ -1154,16 +1187,16 @@
         },
         {
             "name": "phpdocumentor/template-responsive",
-            "version": "1.3.2",
+            "version": "1.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/template.responsive.git",
-                "reference": "5cc453d7946ca76eb3f1b0a9ceff775d4a40f093"
+                "reference": "26f895a2ed3148e1686ae4d802f65a3ef04c04e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/template.responsive/zipball/5cc453d7946ca76eb3f1b0a9ceff775d4a40f093",
-                "reference": "5cc453d7946ca76eb3f1b0a9ceff775d4a40f093",
+                "url": "https://api.github.com/repos/phpDocumentor/template.responsive/zipball/26f895a2ed3148e1686ae4d802f65a3ef04c04e1",
+                "reference": "26f895a2ed3148e1686ae4d802f65a3ef04c04e1",
                 "shasum": ""
             },
             "require": {
@@ -1182,20 +1215,20 @@
                 "phpdoc",
                 "template"
             ],
-            "time": "2013-12-05 08:50:30"
+            "time": "2014-03-29 08:55:54"
         },
         {
             "name": "phpdocumentor/template-responsive-twig",
-            "version": "1.2.2",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/template.responsive-twig.git",
-                "reference": "1f2a3ef331594fe463f698bca6c474634a127cd6"
+                "reference": "cd6d82be6a4626d865fd01d40aad170cea08db0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/template.responsive-twig/zipball/1f2a3ef331594fe463f698bca6c474634a127cd6",
-                "reference": "1f2a3ef331594fe463f698bca6c474634a127cd6",
+                "url": "https://api.github.com/repos/phpDocumentor/template.responsive-twig/zipball/cd6d82be6a4626d865fd01d40aad170cea08db0a",
+                "reference": "cd6d82be6a4626d865fd01d40aad170cea08db0a",
                 "shasum": ""
             },
             "require": {
@@ -1213,7 +1246,7 @@
                 "phpdoc",
                 "template"
             ],
-            "time": "2013-11-02 08:25:22"
+            "time": "2014-03-30 21:02:00"
         },
         {
             "name": "phpdocumentor/template-xml",
@@ -1430,23 +1463,23 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.0.1",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "23e6ac9513df2af67f9f713347f3e4bf4b59784c"
+                "reference": "3dcca2120451b98a98fe60221ca279a184ee64db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/23e6ac9513df2af67f9f713347f3e4bf4b59784c",
-                "reference": "23e6ac9513df2af67f9f713347f3e4bf4b59784c",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/3dcca2120451b98a98fe60221ca279a184ee64db",
+                "reference": "3dcca2120451b98a98fe60221ca279a184ee64db",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "phpunit/php-file-iterator": "~1.3.1",
                 "phpunit/php-text-template": "~1.2",
-                "phpunit/php-token-stream": "~1.1.3",
+                "phpunit/php-token-stream": "~1.2.2",
                 "sebastian/environment": "~1.0",
                 "sebastian/version": "~1.0.3"
             },
@@ -1490,7 +1523,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-03-07 16:03:14"
+            "time": "2014-03-28 10:54:55"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1627,16 +1660,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.1.8",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "66a29f0c5bdf85e70112f25ec9072efec5e2d426"
+                "reference": "ad4e1e23ae01b483c16f600ff1bebec184588e32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/66a29f0c5bdf85e70112f25ec9072efec5e2d426",
-                "reference": "66a29f0c5bdf85e70112f25ec9072efec5e2d426",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/ad4e1e23ae01b483c16f600ff1bebec184588e32",
+                "reference": "ad4e1e23ae01b483c16f600ff1bebec184588e32",
                 "shasum": ""
             },
             "require": {
@@ -1644,6 +1677,11 @@
                 "php": ">=5.3.3"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "PHP/"
@@ -1668,20 +1706,20 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2013-08-02 19:10:55"
+            "time": "2014-03-03 05:10:30"
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.0.2",
+            "version": "4.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "faacb717c9ddb32e2d9abcfd54aecc906b9c5df9"
+                "reference": "a80b77d92a6c7723d77c6728b4ae37e92a65ac1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/faacb717c9ddb32e2d9abcfd54aecc906b9c5df9",
-                "reference": "faacb717c9ddb32e2d9abcfd54aecc906b9c5df9",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a80b77d92a6c7723d77c6728b4ae37e92a65ac1d",
+                "reference": "a80b77d92a6c7723d77c6728b4ae37e92a65ac1d",
                 "shasum": ""
             },
             "require": {
@@ -1743,20 +1781,20 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-03-07 15:42:46"
+            "time": "2014-03-28 11:10:03"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.0.0",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "f055539b22449034af4d232549c53b6cd49b9cff"
+                "reference": "c5e6274b8f2bf983cf883bb375cf44f99aff200e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/f055539b22449034af4d232549c53b6cd49b9cff",
-                "reference": "f055539b22449034af4d232549c53b6cd49b9cff",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/c5e6274b8f2bf983cf883bb375cf44f99aff200e",
+                "reference": "c5e6274b8f2bf983cf883bb375cf44f99aff200e",
                 "shasum": ""
             },
             "require": {
@@ -1800,20 +1838,20 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2014-03-07 06:53:16"
+            "time": "2014-03-18 08:56:48"
         },
         {
             "name": "pimple/pimple",
-            "version": "v1.0.2",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Pimple.git",
-                "reference": "ae11e57e8c2bb414b2ff93396dbbfc0eb92feb94"
+                "reference": "2019c145fe393923f3441b23f29bbdfaa5c58c4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Pimple/zipball/ae11e57e8c2bb414b2ff93396dbbfc0eb92feb94",
-                "reference": "ae11e57e8c2bb414b2ff93396dbbfc0eb92feb94",
+                "url": "https://api.github.com/repos/fabpot/Pimple/zipball/2019c145fe393923f3441b23f29bbdfaa5c58c4d",
+                "reference": "2019c145fe393923f3441b23f29bbdfaa5c58c4d",
                 "shasum": ""
             },
             "require": {
@@ -1822,7 +1860,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
@@ -1848,7 +1886,7 @@
                 "container",
                 "dependency injection"
             ],
-            "time": "2013-03-08 08:21:40"
+            "time": "2013-11-22 08:30:29"
         },
         {
             "name": "psr/log",
@@ -2934,7 +2972,7 @@
         },
         {
             "name": "zendframework/zend-cache",
-            "version": "2.2.6",
+            "version": "2.1.6",
             "target-dir": "Zend/Cache",
             "source": {
                 "type": "git",
@@ -2989,7 +3027,7 @@
         },
         {
             "name": "zendframework/zend-config",
-            "version": "2.2.6",
+            "version": "2.1.6",
             "target-dir": "Zend/Config",
             "source": {
                 "type": "git",
@@ -3035,7 +3073,7 @@
         },
         {
             "name": "zendframework/zend-eventmanager",
-            "version": "2.2.6",
+            "version": "2.1.6",
             "target-dir": "Zend/EventManager",
             "source": {
                 "type": "git",
@@ -3076,7 +3114,7 @@
         },
         {
             "name": "zendframework/zend-filter",
-            "version": "2.2.6",
+            "version": "2.1.6",
             "target-dir": "Zend/Filter",
             "source": {
                 "type": "git",
@@ -3127,7 +3165,7 @@
         },
         {
             "name": "zendframework/zend-i18n",
-            "version": "2.2.6",
+            "version": "2.1.6",
             "target-dir": "Zend/I18n",
             "source": {
                 "type": "git",
@@ -3176,7 +3214,7 @@
         },
         {
             "name": "zendframework/zend-json",
-            "version": "2.2.6",
+            "version": "2.1.6",
             "target-dir": "Zend/Json",
             "source": {
                 "type": "git",
@@ -3221,7 +3259,7 @@
         },
         {
             "name": "zendframework/zend-math",
-            "version": "2.2.6",
+            "version": "2.1.6",
             "target-dir": "Zend/Math",
             "source": {
                 "type": "git",
@@ -3267,7 +3305,7 @@
         },
         {
             "name": "zendframework/zend-serializer",
-            "version": "2.2.6",
+            "version": "2.1.6",
             "target-dir": "Zend/Serializer",
             "source": {
                 "type": "git",
@@ -3314,7 +3352,7 @@
         },
         {
             "name": "zendframework/zend-servicemanager",
-            "version": "2.2.6",
+            "version": "2.1.6",
             "target-dir": "Zend/ServiceManager",
             "source": {
                 "type": "git",
@@ -3357,7 +3395,7 @@
         },
         {
             "name": "zendframework/zend-stdlib",
-            "version": "2.2.6",
+            "version": "2.1.6",
             "target-dir": "Zend/Stdlib",
             "source": {
                 "type": "git",
@@ -3515,9 +3553,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "chadicus/coding-standard": 20
-    },
+    "stability-flags": [
+
+    ],
     "platform": {
         "php": "~5.4"
     },
