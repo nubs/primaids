@@ -381,4 +381,17 @@ class Arrays
 
         return $result;
     }
+
+    /**
+     * Attempts to divide the given input array into groups of equal size.
+     *
+     * @param array $input     The array to batch.
+     * @param int   $batchSize The size of each group.
+     *
+     * @return array
+     */
+    final public static function batch(array $input, $batchSize)
+    {
+        return array_chunk($input, ceil(count($input)/$batchSize), true)
+    }
 }
