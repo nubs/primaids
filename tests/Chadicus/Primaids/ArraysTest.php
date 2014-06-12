@@ -297,4 +297,25 @@ final class ArraysTest extends \PHPUnit_Framework_TestCase
         $input = ['d' => 'lemon', 'a' => 'orange', 'b' => 'banana', 'c' => 'apple'];
         $this->assertSame(['d' => 'lemon'], Arrays::subSet($input, ['d', 'notThere']));
     }
+
+    /**
+     * Verify basic behavior of batch().
+     *
+     * @test
+     * @covers ::batch
+     *
+     * @return void
+     */
+    public function batch()
+    {
+        $input = array('a', 'b', 'c', 'd', 'e');
+        $actual = Arrays::batch($input, 2);
+        $this->assertSame(
+            array(
+                array(0 => 'a', 1 => 'b', 2 => 'c'),
+                array(3 => 'd', 4 => 'e'),
+            ),
+            $actual
+        );
+    }
 }

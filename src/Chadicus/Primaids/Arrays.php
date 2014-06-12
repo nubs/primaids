@@ -392,6 +392,6 @@ class Arrays
      */
     final public static function batch(array $input, $batchSize)
     {
-        return array_chunk($input, ceil(count($input)/$batchSize), true)
+        return array_chunk($input, ceil(count($input)/$batchSize), true);
     }
 }
