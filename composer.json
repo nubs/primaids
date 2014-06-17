@@ -20,6 +20,6 @@
         "squizlabs/php_codesniffer": "~1.0"
     },
     "autoload": {
-        "psr-0": { "Chadicus": ["src", "tests"] }
+        "psr-4": { "Chadicus\\Primaids\\": ["src", "tests"] }
     }
 }

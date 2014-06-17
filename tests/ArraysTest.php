@@ -1,8 +1,6 @@
 <?php
 namespace Chadicus\Primaids;
 
-use Chadicus\Primaids\Arrays;
-
 /**
  * Unit tests for \Chadicus\Primaids\Arrays class.
  *

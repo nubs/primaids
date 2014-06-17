@@ -13,7 +13,7 @@ class Arrays
      * <pre>
      * use Chadicus\Primaids\Arrays;
      * $array = ['oranges' => .69, 'bananas' => .79, 'apples' => .89];
-     * echo Util::format($array, "Fruit: {key} only {value} per pound\n");
+     * echo Primaids::format($array, "Fruit: {key} only {value} per pound\n");
      * </pre>
      * <br />
      * Output:
