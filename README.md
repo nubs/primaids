@@ -1,5 +1,5 @@
 # Primaids - Primitive Aids for PHP
-[![Build Status](https://travis-ci.org/chadicus/primaids.png)](https://travis-ci.org/chadicus/primaids)
+[![Build Status](http://img.shields.io/travis/chadicus/primaids.svg?style=flat)](https://travis-ci.org/chadicus/primaids)
 
 
 A collection of utility classes to work with PHP primitive types.
